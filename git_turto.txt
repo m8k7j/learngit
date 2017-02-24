@@ -1,0 +1,38 @@
+﻿集中式和分布式
+集中式是有一个中央版本控制器，所有的电脑都要从中央控制器中取版本，改完了再放回图书馆，缺点是需要连网，如果网络较差就累了，svn
+分布式是每一台电脑都有一个完整的版本库，没有中央控制器这一说，工作时需要联网，只有最后推送才需要, git
+
+创建readme
+
+创建仓库
+	git init       初始git
+	git add .      把文件添加到暂存区
+	git commit     把文件添加到分支上
+修改readme	
+版本回退
+	git status     会提示在哪个版本上，哪些文件有改动
+	git diff file  会对这个文件进行比较，看有哪些变动，-红色表示原来的状态，+绿色表示修改后的状态
+	
+	git add .              看到改动后，确认要改动，则进行添加并提交
+	git commit -m 'add distributed'
+	提交后再git status就干净了，没有需要提交的了
+	
+	git log           查看版本改动的日志
+	git log --pretty=oneline  简要查看日志，前面一部分是commit id，可以用作版本号
+	HEAD表示当前版本 HEAD^前一个版本， HEAD^^前两个版本， HEAD~200前两个版本
+	git reset --hard HEAD^   退到前一个版本
+	如果想再回到最新的版本则需要那个版本的commit id,只需要前几位就行，后几位不行
+	git reflog 得到commit id
+	
+	git diff 是工作区与暂存区的比较
+	git diff --cached 暂存区与分支的比较
+	
+	如果不add到暂存区，就不会提交到分支
+	git checkout .   
+	git checkout -- file    放弃工作区中的修改
+	如果文件已到暂存区了，那git checkout --file就没用了
+	git reset HEAD file   先从暂存区回来再 git checkout -- file撤回
+	
+	
+	
+	
