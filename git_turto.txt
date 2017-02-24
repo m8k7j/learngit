@@ -33,6 +33,73 @@
 	如果文件已到暂存区了，那git checkout --file就没用了
 	git reset HEAD file   先从暂存区回来再 git checkout -- file撤回
 	
+	删除文件，一般在文件管理器删掉，但git会发现你删掉了，这是变动，它会确认你是否要删git status
+	git rm file
+	git commit -m 'delete file'
+	
+	如果是误删，则要撤回用
+	git checkout -- test.txt   放弃工作区对test.txt作的修改，实在不行就退版本
+	只要提交到版本库中就不怕误删了
+	
+	git remote add origin git@github.com:m8k7j/learngit.git   关联远程仓库
+	git push -u origin master         第一次推送，把当前master分支推送给远程
+	git clone git@github.com:m8k7j/learngit.git      远程克隆到本地
+	
+	一般master用来发布，dev才是干活的分支，bug与feature可以各起分支
+	git checkout -b dev           创建dev分支并转到dev分支下工作
+	git branch          查看分支
+	git checkout master  切换分支
+	当分支上的内容比主支内容要新时，可以在主支上进行合并分支的操作
+	git merge dev       合并指定分支到当前分支
+	git branch -d dev    删除分支
+	git鼓励用分支完成某个任务再合并到主支上
+	
+	
+	分支与主支各有新的提交
+	分支基于原主支进行的修改，并提交到版本库里
+	原主支再进行修改，这个修改分支并不知情，此时合并分支会发生冲突
+	到底以原主支后来的修改为准还是分支上的修改为准
+	此时打开冲突的文件
+	<<<<<<< HEAD
+Creating a new branch is quick & simple.
+=======
+Creating a new branch 'feature1'
+>>>>>>> feature1
+	======隔开两个分支冲突的内容，手动修改
+	
+	pull 远程到本地， 本地落后，远程新
+	push 本地到远程， 本地超前，远程落后
+	
+	git merge --no-ff -m 'merge dev' dev  分有合并分支信息git log
+	
+	bug分支管理
+	git stash          暂时把工作存起来，以后恢复再继续做，工作区恢复到之前未修改过的状态修改bug
+	在主分支上修改bug，需要在主分支上创建分支，这样内容就是主分支的内容
+	git checkout master
+	git checkout -b bug
+	git stash list
+	git stash pop  = git stash apply @{0}+ git stash drop
+	
+	feature分支，在feature分支上开发，合并到dev，
+	如果在feature分支上开发了功能，准备合并到dev, 接到上级说不要这个分支了
+	git branch -d feature-vulcan友情提醒并没有合并到dev
+	真实删除 git branch -D feature-vulcan
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
